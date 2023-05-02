@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import "./EditBoardModal.scss";
 import { initialContext } from "../../context/dataContext";
 
-import { useParams } from "react-router-dom";
 
 
 interface Props {

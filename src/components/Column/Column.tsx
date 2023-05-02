@@ -7,15 +7,9 @@ import {Draggable} from 'react-beautiful-dnd'
 interface Props {
     eachColumn: IColumn;
     color: string;
-    
-    
+       
 }
- interface Column{
-    column:{
-        name:any
-    }
-   
- }
+
 
 
 const Column: React.FC<Props> = ({ eachColumn, color }) => {
