@@ -11,8 +11,9 @@ interface Props {
 
 const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
     const [columns, setColumns] = useState<string[]>([""]);
+    const [hideName] =useState(false)
 
-    const [name, setName] = useState("");
+    const [name,setName] = useState("");
     const [nameError, setNameError] = useState("");
 
     const {setBoards,setRequesting} = useContext(initialContext)    
@@ -46,11 +47,11 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
             const postNewBoardRequest= async ()=>{
                 try {
                     setRequesting(true)
-                    const filteredColumns= columns.filter((column)=>column.length>0)
+                    //const filteredColumns= columns.filter((column)=>column.length>0)
                     // const requestBody={
-                    //     name,
+                    //      name,
                     //     columns: filteredColumns
-                    // }
+                    //  }
                    // const postNewBoard= await axios.post(apiRoute.boards,requestBody)
                     const newalldata= await axios.get(apiRoute.alldata)
                     const response= newalldata.data
@@ -142,6 +143,7 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
                     </button>
                 </div>
             </div>
+            {hideName===true && name}
         </div>
     );
 };

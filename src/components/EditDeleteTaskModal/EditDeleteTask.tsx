@@ -1,7 +1,5 @@
 import './EditDeleteTask.scss'
-import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
-import { useState,useContext } from "react";
-import UpdateTaskModal from "../UpdateTaskModal/UpdateTaskModal";
+
 
 
 

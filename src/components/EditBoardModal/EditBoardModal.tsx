@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./EditBoardModal.scss";
 import { initialContext } from "../../context/dataContext";
-import axios from "axios";
-import apiRoute from "../../config/apiEndpointRoute";
+
 import { useParams } from "react-router-dom";
 
 
@@ -11,11 +10,10 @@ interface Props {
 }
 
 const EditBoardModal: React.FC<Props> = ({ setShowEditBoard }) => {
-  const { activeBoard, setBoards } = useContext(initialContext);
+  const { activeBoard } = useContext(initialContext);
   const [name, setName] = useState(activeBoard.name);
   const [columns, setColumns] = useState([...activeBoard.columns]);
   const [deletedColumns, setDeletedColumns] = useState<string[]>([]);
-  const { id } = useParams();
   const handleColumnChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -46,10 +44,10 @@ const EditBoardModal: React.FC<Props> = ({ setShowEditBoard }) => {
             columns: filteredNewColumns,
             deletedColumns: deletedColumns,
           };
-          const editBoard = await axios.put(
-            apiRoute.boards + `/${id}`,
-            requestBody
-          );
+          // const editBoard = await axios.put(
+          //   apiRoute.boards + `/${id}`,
+          //   requestBody
+          // );
             console.log(requestBody)
           // const getallData = await axios.get(apiRoute.alldata);
           // setBoards(getallData.data.boards);
