@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
+
+:root {
+    --clr-primary-400: #635fc7;
+    --clr-primary-300: #aba4ff;
+
+    --clr-secondary-400: #ea5555;
+    --clr-secondary-300: #ff9898;
+
+    --clr-neutral-100: #fff;
+    --clr-neutral-200: #f4f7fd;
+    --clr-neutral-300: #e4ebfa;
+    --clr-neutral-400: #828fa3;
+    --clr-neutral-500: #3e3f4e;
+    --clr-neutral-600: #2b2c37;
+    --clr-neutral-700: #20212c;
+    --clr-neutral-800: #000112;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+input,
+button,
+select {
+    font-family: inherit;
+}

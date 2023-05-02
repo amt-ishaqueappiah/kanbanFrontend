@@ -1,0 +1,77 @@
+@import "./Home.scss";
+@import "./breakpoints";
+@import "../App";
+.nav {
+
+    grid-area: navbar;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem;
+    background-color: var(--secondary);
+    // position: relative;
+
+    @include sm {
+        padding: 1.5rem 1rem;
+    }
+    @include md {
+        padding: 3rem 3rem;
+        justify-content: space-between;
+
+        .kanbanIcon,
+        .arrow-up,
+        .arrowDown {
+            display: none;
+        }
+    }
+    .nav-left-panel {
+        @include sm {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        @include fold {
+            gap: 0.3rem;
+        }
+    }
+
+    .nav-right-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 0 3rem;
+
+        @include sm{
+            left: 70%;
+        }
+
+        @include md{
+            left: 70%;
+        }
+
+        @include lg{
+            left: 83%;
+        }
+     
+     
+
+        @include fold {
+            gap: 0 1rem;
+        }
+
+        .btn-add-text {
+            @include sm {
+                display: none;
+            }
+        }
+        .btn-add-icon {
+            @include md {
+                display: none;
+            }
+        }
+    }
+    .heading-lg{
+        color:var(--white)
+    }
+}

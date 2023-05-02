@@ -1,0 +1,16 @@
+@import url(../../App.scss);
+
+.bullet--container {
+    .bullet {
+        width: 12px;
+        height: 12px;
+        border-radius: 100%;
+    }
+
+    // @media only screen and (max-width: $tablet) {
+    //     .bullet {
+    //         width: 10px;
+    //         height: 10px;
+    //     }
+    // }
+}
