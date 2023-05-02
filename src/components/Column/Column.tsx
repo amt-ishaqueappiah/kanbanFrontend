@@ -3,10 +3,7 @@ import { IColumn } from "../utils/types";
 import Bullet from "../Bullet/Bullet";
 import Card from "../Card/Card";
 import "./Column.scss";
-import { initialContext } from "../../context/dataContext";
-import { useContext } from "react";
 import {Draggable} from 'react-beautiful-dnd'
-import { Provider } from "react-redux";
 interface Props {
     eachColumn: IColumn;
     color: string;
