@@ -1,8 +1,10 @@
-import {useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import { isString } from "../utils/validation";
 import { initialContext } from "../../context/dataContext";
 
 import "./AddNewTaskModal.scss";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import apiRoute from "../../config/apiEndpointRoute";
 
 // Style: remove modal parent div on click
@@ -18,6 +20,7 @@ interface Subtask{
 
 const AddNewTaskModal: React.FC<Props> = ({ handleShowNewTask }) => {
     const {activeBoard, setBoards,setRequesting}= useContext(initialContext)
+    let data = [];
     // const {id, setID}= useContext(initialContext)
     const [columnId, setColumnId]= useState(activeBoard.columns[0].columnid)
 
@@ -28,6 +31,8 @@ const AddNewTaskModal: React.FC<Props> = ({ handleShowNewTask }) => {
 
     const [description, setDescription] = useState("");
     // const [descriptionError, setDescriptionError] = useState("");
+
+    const [status, setStatus] = useState("Todo");
 
     const [subtaskErrors, setSubtaskErrors] = useState<number[]>([]);
 
@@ -55,7 +60,7 @@ const AddNewTaskModal: React.FC<Props> = ({ handleShowNewTask }) => {
     const removeFields = (index: number) => {
         setSubtasks((prevSubtasks)=>{
             prevSubtasks.splice(index, 1);
-            if(prevSubtasks.length===0)return [{title:"", is_completed: false}]
+            if(prevSubtasks.length==0)return [{title:"", is_completed: false}]
             return [...prevSubtasks]
         })
     };
@@ -74,6 +79,7 @@ const AddNewTaskModal: React.FC<Props> = ({ handleShowNewTask }) => {
                     subtasks:filteredSubtask
                 }
                 console.log(requestBody)
+                const postData= await axios.post(apiRoute.tasks,requestBody)
                 const getallData= await axios.get(apiRoute.alldata)
                 setBoards(getallData.data.boards)
                 handleShowNewTask(false)

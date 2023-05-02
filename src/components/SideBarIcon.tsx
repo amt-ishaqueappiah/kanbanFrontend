@@ -1,4 +1,3 @@
-import React ,{useState} from 'react';
 import '../css/sideBarIcon.scss';
 
 interface Props {

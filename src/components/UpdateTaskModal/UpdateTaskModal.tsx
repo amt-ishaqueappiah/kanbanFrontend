@@ -32,7 +32,7 @@ const UpdateTaskModal :React.FC<Props> = ({setShowUpdateTaskModal,taskData,colum
                 if(title){
                     const destination={
                         columnid: status,
-                        index:status==prevStatus?index:1 
+                        index:status===prevStatus?index:1 
                     }
                     const source={
                         columnid: prevStatus,
@@ -72,110 +72,86 @@ const UpdateTaskModal :React.FC<Props> = ({setShowUpdateTaskModal,taskData,colum
         })
     }
     return (
-      <div>
-        <div
-          className="update-task-modal"
-          onClick={() => setShowUpdateTaskModal(false)}
-        >
-          <div
-            className="form"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <h2 className="heading-lg">Edit Task</h2>
+        <div>
+            <div className="update-task-modal" onClick={()=>setShowUpdateTaskModal(false)}>
+                <div className="form" onClick={(e) => {
+                        e.stopPropagation();
+                    }}>
+                    <h2 className="heading-lg">Edit Task</h2>
 
-            <div className="input-grp">
-              <label htmlFor="">Title</label>
-              <div className="text-field">
-                <input
-                  type="text"
-                  placeholder="eg. take coffee break"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  style={{ color: "var(--white)" }}
-                />
-                <div></div>
-              </div>
-            </div>
+                    <div className="input-grp">
+                        <label htmlFor="">Title</label>
+                        <div className="text-field">
+                            <input
+                                type="text"
+                                placeholder="eg. take coffee break"
+                                value={title}
+                                onChange={(e)=>setTitle(e.target.value)}
+                            />
+                            <div></div>
+                        </div>
+                    </div>
 
-            <div className="input-grp">
-              <label htmlFor="">Description</label>
-              <div className="text-field">
-                <textarea
-                  className="textarea"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
+                    <div className="input-grp">
+                        <label htmlFor="">Description</label>
+                        <div className="text-field">
+                            <textarea className="textarea" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
+                        </div>
+                    </div>
 
-            <div className="subtasks-container">
-              <label htmlFor="">Subtasks</label>
-              {subtasks.map((subtask, index) => (
-                <div className="subtask" key={index}>
-                  <div className="text-field">
-                    <input
-                      type="text"
-                      placeholder="eg. take coffee break"
-                      value={subtask.title}
-                      style={{ color: "var(--white)" }}
-                    />
-                    <div></div>
-                  </div>
+                    <div className="subtasks-container">
+                        <label htmlFor="">Subtasks</label>
+                        {
+                            subtasks.map((subtask,index)=>(
+                                <div className="subtask" key={index}>
+                                    <div className="text-field">
+                                        <input
+                                            type="text"
+                                            placeholder="eg. take coffee break"
+                                            value={subtask.title}
+                                        />
+                                        <div></div>
+                                    </div>
 
-                  <div
-                    onClick={() => {
-                      deleteSubtask(index, subtask.subtaskid);
-                    }}
-                  >
-                    <img src="/assets/icon-cross.svg" alt="" />
-                  </div>
+                                   <div onClick={()=>{deleteSubtask(index, subtask.subtaskid)}}>
+                                        <img src="/assets/icon-cross.svg" alt="" />
+                                   </div>
+                                </div>
+                            ))
+                        }
+
+                        <button className="btn--secondary btn--sm btn--block" onClick={AddNewSubtask}>
+                            + Add New Subtask
+                        </button>
+                    </div>
+
+                    <div className="status">
+                        <label htmlFor="">Status</label>
+                        <div className="select-box">
+                            <select className="select" value={status} onChange={(e)=>{setPrevStatus(status); setStatus(e.target.value)}}>
+                                {
+                                    activeBoard.columns.map((column,index)=>(
+                                        <option value={column.columnid} key={index}>{column.name}</option>
+                                    ))
+                                }
+                                
+                                
+                            </select>
+                            <div className="icon-container">
+                                <img
+                                    src="./assets/icon-chevron-down.svg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className="btn--primary btn--block btn--sm" onClick={handleUpdateTaskSubmit}>
+                        Save Changes
+                    </button>
                 </div>
-              ))}
-
-              <button
-                className="btn--secondary btn--sm btn--block"
-                onClick={AddNewSubtask}
-                style={{ backgroundColor: "var(--buttons)" }}
-              >
-                + Add New Subtask
-              </button>
             </div>
-
-            <div className="status">
-              <label htmlFor="">Status</label>
-              <div className="select-box">
-                <select
-                  className="select"
-                  value={status}
-                  onChange={(e) => {
-                    setPrevStatus(status);
-                    setStatus(e.target.value);
-                  }}
-                                style={{ backgroundColor: "var(--secondary)", color:'var(--white)'}}
-                >
-                  {activeBoard.columns.map((column, index) => (
-                    <option value={column.columnid} key={index}>
-                      {column.name}
-                    </option>
-                  ))}
-                </select>
-                <div className="icon-container">
-                  <img src="./assets/icon-chevron-down.svg" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <button
-              className="btn--primary btn--block btn--sm"
-              onClick={handleUpdateTaskSubmit}
-            >
-              Save Changes
-            </button>
-          </div>
         </div>
-      </div>
     );
 };
 

@@ -2,14 +2,12 @@ import React,{useContext, useEffect, useState} from "react";
 import "../css/MainBoard.scss";
 import Column from "./Column/Column";
 import {DragDropContext,Droppable, OnDragEndResponder} from 'react-beautiful-dnd'
-import { useParams } from "react-router-dom";
 import { initialContext } from "../context/dataContext";
 import AddNewColumn from "./AddNewColumn/AddNewColumn";
 
 
 const MainBoard= () => {
      const [showAddNewColumn, setShowAddNewColumn] = useState(false)
-    const {id}= useParams()
     const {activeBoard,setActiveBoard,boardIndex, setBoards, boards}= useContext(initialContext)
     const colorArray = [
         "#49C4E5",
@@ -20,14 +18,14 @@ const MainBoard= () => {
         "##ff4500",
     ];
     const onDragEnd: OnDragEndResponder =(result)=>{
-        const {destination, source, draggableId}= result
+        const {destination, source}= result
         if(destination==null)return;
-        if(destination.droppableId==source.droppableId && destination.index==source.index)return;
-        if(destination.droppableId==source.droppableId && destination.index!=source.index){
+        if(destination.droppableId===source.droppableId && destination.index===source.index)return;
+        if(destination.droppableId===source.droppableId && destination.index!==source.index){
             const from= source.index
             const to= destination.index
             const changeActiveBoard={...activeBoard}
-            const columnIndex=changeActiveBoard.columns.findIndex((column)=> column.columnid==source.droppableId)
+            const columnIndex=changeActiveBoard.columns.findIndex((column)=> column.columnid===source.droppableId)
             const tasks= changeActiveBoard.columns[columnIndex].tasks
             const removedTask= tasks?.splice(from, 1)![0]
             tasks?.splice(to,0,removedTask!)
@@ -40,16 +38,17 @@ const MainBoard= () => {
             return
         }
         else{
-            const changeActiveBoard={...activeBoard}
-            const from= destination.index
-            const to = destination.index
-            console.log('else')
-            const sourceColumnLocation= changeActiveBoard.columns.findIndex((column)=>column.columnid===source.droppableId)
-            const removeTaskFromSource= changeActiveBoard.columns[sourceColumnLocation].tasks?.splice(from,1)[0];
-            const destinationColumnLocation= changeActiveBoard.columns.findIndex((column)=>column.columnid===destination.droppableId);
-            const addTaskToDestination= changeActiveBoard.columns[destinationColumnLocation].tasks?.splice(to, 0, removeTaskFromSource! )
+             const changeActiveBoard={...activeBoard}
+            // const from= destination.index
+            // const to = destination.index 
+            // console.log('else')
+            // const sourceColumnLocation= changeActiveBoard.columns.findIndex((column)=>column.columnid===source.droppableId)
+            // const removeTaskFromSource= changeActiveBoard.columns[sourceColumnLocation].tasks?.splice(from,1)[0];
+            // const destinationColumnLocation= changeActiveBoard.columns.findIndex((column)=>column.columnid===destination.droppableId);
+            // const addTaskToDestination= changeActiveBoard.columns[destinationColumnLocation].tasks?.splice(to, 0, removeTaskFromSource! ) 
             setBoards((prevBoards)=>{
                 prevBoards[boardIndex]=changeActiveBoard
+        
                 return [...prevBoards]
             })
         }
@@ -57,7 +56,7 @@ const MainBoard= () => {
     useEffect(()=>{
         console.log('change')
         setActiveBoard(boards[boardIndex])
-    },[boards])
+    },[boards,boardIndex,setActiveBoard])
     return (
 
         <main className="main">

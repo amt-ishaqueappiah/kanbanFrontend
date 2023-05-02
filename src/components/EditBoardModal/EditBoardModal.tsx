@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./EditBoardModal.scss";
 import { initialContext } from "../../context/dataContext";
-import Column from "../Column/Column";
 import axios from "axios";
 import apiRoute from "../../config/apiEndpointRoute";
 import { useParams } from "react-router-dom";
-import { IColumn } from "../utils/types";
+
 
 interface Props {
   setShowEditBoard: React.Dispatch<React.SetStateAction<boolean>>;
