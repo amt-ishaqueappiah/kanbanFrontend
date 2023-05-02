@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams, useNavigate } from "react-router-dom";
 import "./App.scss";
 import HomePage from "./pages/HomePage";
 import { useTheme } from "./context/ThemesContext";
@@ -21,7 +21,7 @@ function App() {
                 );
                 const status= response.status
                 const data = await response.json()
-                if(status===200){
+                if(status==200){
                     setBoards(data.boards)
                 }
                 else {
@@ -32,7 +32,7 @@ function App() {
             }
         }
         fetchDataFunc()
-    },[setBoards])
+    },[])
 
 
 

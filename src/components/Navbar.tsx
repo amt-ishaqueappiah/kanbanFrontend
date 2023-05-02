@@ -21,7 +21,7 @@ const Navbar: React.FC<Props> = ({ sideViewToggle, setSideViewToggle }) => {
     const [showEditBoard,setShowEditBoard]= useState(false)
     const [showDeleteBoard,setShowDeleteBoard]= useState(false)
     const {id}= useParams()
-    const {activeBoard}= useContext(initialContext)
+    const {activeBoard,boards}= useContext(initialContext)
     console.log(activeBoard)
     useEffect(()=>{
         if(id && Object.keys(activeBoard).length>0){
@@ -101,7 +101,7 @@ const Navbar: React.FC<Props> = ({ sideViewToggle, setSideViewToggle }) => {
                         (
                             <>
                             {
-                                activeBoard.columns.length===0? 
+                                activeBoard.columns.length==0? 
                                 (
                                     <button
                                         disabled
@@ -164,7 +164,7 @@ const Navbar: React.FC<Props> = ({ sideViewToggle, setSideViewToggle }) => {
                     </svg>
                 )}
 
-                {Object.keys(activeBoard).length === 0 && (
+                {Object.keys(activeBoard).length == 0 && (
                     <svg
                         width="5"
                         height="20"

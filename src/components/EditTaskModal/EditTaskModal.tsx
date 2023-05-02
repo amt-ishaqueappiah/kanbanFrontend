@@ -1,5 +1,5 @@
 import "./EditTaskModal.scss";
-import { IColumn, ITask } from "../utils/types"
+import { IColumn, ISubTask, ITask } from "../utils/types"
 import EditDeleteTask from "../EditDeleteTaskModal/EditDeleteTask";
 import { useState, useContext } from "react";
 import apiRoute from "../../config/apiEndpointRoute";
@@ -22,16 +22,16 @@ const EditTaskModal: React.FC<Props> = ({showEditTask,setShowEditTask,taskData, 
     const [showUpdateTaskModal, setShowUpdateTaskModal]= useState(false)
     const [showDeleteTaskModal, setShowDeleteTaskModal]= useState(false)
     const [subtasks, setSubtasks]= useState(taskData.subtasks!)
-    const [selectColumn]= useState(columnData.columnid)
+    const [selectColumn, setSelectColumn]= useState(columnData.columnid)
 
     const {setBoards,activeBoard}= useContext(initialContext)
     const changeCompletion= (subtaskid:string, e:React.ChangeEvent<HTMLInputElement>, index:number)=>{
         const updateCompletion= async ()=>{
             try {
-                // const requestBody= {
-                //     is_completed:!subtasks[index].is_completed
-                // }
-               // const putComopletionRequest= await axios.put(apiRoute.subtasks+`/complete/${subtaskid}`,requestBody)
+                const requestBody= {
+                    is_completed:!subtasks[index].is_completed
+                }
+                const putComopletionRequest= await axios.put(apiRoute.subtasks+`/complete/${subtaskid}`,requestBody)
                 const getallData= await axios.get(apiRoute.alldata)
                 setBoards(getallData.data.boards)
                 setSubtasks((prevSubtasks)=>{

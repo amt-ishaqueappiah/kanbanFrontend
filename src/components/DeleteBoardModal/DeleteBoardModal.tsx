@@ -2,7 +2,7 @@ import "./DeleteBoardModal.scss";
 import { initialContext } from "../../context/dataContext";
 import {useContext} from 'react'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import apiRoute from "../../config/apiEndpointRoute";
 
 
@@ -13,13 +13,13 @@ interface Props {
 const DeleteBoardModal: React.FC<Props> = ({
     setShowDeleteBoard,
 }) => {
-
+    const {id}= useParams()
     const {setBoards,activeBoard} = useContext(initialContext)
     const navigate= useNavigate()
     const handleDelete=()=>{
         const deleteBoardRequest= async ()=>{
             try {
-               // const deleteBoard= await axios.delete(apiRoute.boards+`/${id}`)
+                const deleteBoard= await axios.delete(apiRoute.boards+`/${id}`)
                 const allData= await axios.get(apiRoute.alldata)
                 setBoards(allData.data.boards)
                 navigate("/")

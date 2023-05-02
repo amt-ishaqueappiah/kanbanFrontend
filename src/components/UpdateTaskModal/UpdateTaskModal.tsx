@@ -32,7 +32,7 @@ const UpdateTaskModal :React.FC<Props> = ({setShowUpdateTaskModal,taskData,colum
                 if(title){
                     const destination={
                         columnid: status,
-                        index:status===prevStatus?index:1 
+                        index:status==prevStatus?index:1 
                     }
                     const source={
                         columnid: prevStatus,

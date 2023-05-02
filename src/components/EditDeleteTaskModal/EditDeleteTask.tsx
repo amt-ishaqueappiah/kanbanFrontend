@@ -1,5 +1,7 @@
 import './EditDeleteTask.scss'
-
+import DeleteTaskModal from "../DeleteTaskModal/DeleteTaskModal";
+import { useState,useContext } from "react";
+import UpdateTaskModal from "../UpdateTaskModal/UpdateTaskModal";
 
 
 
@@ -18,13 +20,13 @@ const EditDeleteTask  = ({setShowEditDeleteTaskModal, setShowUpdateTaskModal,set
             <div className="edit-delete-task text-light body-lg">
 
 
-                <p onClick={(e)=>{
+                <a onClick={(e)=>{
                     setShowUpdateTaskModal(true)
                     setShowEditDeleteTaskModal(false)
 
-                }}>Edit Task</p>
+                }}>Edit Task</a>
                 
-                <p 
+                <a
                     className="text--secondary"
                     onClick={(e) => {
                         // setShowEditDelete(false);
@@ -33,7 +35,7 @@ const EditDeleteTask  = ({setShowEditDeleteTaskModal, setShowUpdateTaskModal,set
                     }}
                 >
                     Delete Task
-                </p>
+                </a>
             </div>
             {/* {showDeleteTask && (
                 <DeleteTaskModal

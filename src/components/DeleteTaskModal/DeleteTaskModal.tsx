@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
+import axios, { Axios } from "axios";
 import './DeleteTaskModal.scss'
 import { ITask } from "../utils/types";
 import apiRoute from "../../config/apiEndpointRoute";
 import { initialContext } from "../../context/dataContext";
-import axios from 'axios'
 
 
 interface Props {

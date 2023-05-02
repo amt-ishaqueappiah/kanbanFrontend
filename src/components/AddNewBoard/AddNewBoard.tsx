@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
+import { isString } from "../utils/validation";
 import "./AddNewBoard.scss";
 import axios from 'axios';
+import { response } from "express";
 import apiRoute from "../../config/apiEndpointRoute";
 import { initialContext } from "../../context/dataContext";
 interface Props {
@@ -11,9 +13,8 @@ interface Props {
 
 const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
     const [columns, setColumns] = useState<string[]>([""]);
-    const [hideName] =useState(false)
 
-    const [name,setName] = useState("");
+    const [name, setName] = useState("");
     const [nameError, setNameError] = useState("");
 
     const {setBoards,setRequesting} = useContext(initialContext)    
@@ -36,7 +37,7 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
     const removeFields = (index: number) => {
         setColumns((prevColumns)=>{
             prevColumns.splice(index, 1);
-            if(prevColumns.length===0)return [""]
+            if(prevColumns.length==0)return [""]
             return [...prevColumns]
         });
     };
@@ -47,12 +48,12 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
             const postNewBoardRequest= async ()=>{
                 try {
                     setRequesting(true)
-                    //const filteredColumns= columns.filter((column)=>column.length>0)
-                    // const requestBody={
-                    //      name,
-                    //     columns: filteredColumns
-                    //  }
-                   // const postNewBoard= await axios.post(apiRoute.boards,requestBody)
+                    const filteredColumns= columns.filter((column)=>column.length>0)
+                    const requestBody={
+                        name,
+                        columns: filteredColumns
+                    }
+                    const postNewBoard= await axios.post(apiRoute.boards,requestBody)
                     const newalldata= await axios.get(apiRoute.alldata)
                     const response= newalldata.data
                     setBoards(response.boards)
@@ -143,7 +144,6 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
                     </button>
                 </div>
             </div>
-            {hideName===true && name}
         </div>
     );
 };
