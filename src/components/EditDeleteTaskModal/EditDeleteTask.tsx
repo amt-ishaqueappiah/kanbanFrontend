@@ -18,13 +18,13 @@ const EditDeleteTask  = ({setShowEditDeleteTaskModal, setShowUpdateTaskModal,set
             <div className="edit-delete-task text-light body-lg">
 
 
-                <a onClick={(e)=>{
+                <a href="#" onClick={(e)=>{
                     setShowUpdateTaskModal(true)
                     setShowEditDeleteTaskModal(false)
 
                 }}>Edit Task</a>
                 
-                <a
+                <a href="#"
                     className="text--secondary"
                     onClick={(e) => {
                         // setShowEditDelete(false);

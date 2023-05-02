@@ -15,13 +15,13 @@ const EditAndDeleteBoardModal: React.FC<Props> = ({ setShowEditBoard, setShowDel
     return (
         <div>
             <div className="edit-delete text-light body-lg" >
-                <p onClick={()=>{
+                <a  href="#" onClick={()=>{
                     setShowEditBoard(true)
                     setShowEditDelete(false)
-                }}>Edit Board</p>
+                }}>Edit Board</a>
 
                 
-                <p
+                <a href="#"
                     className="text--secondary"
                     onClick={(e) => {
                         setShowDeleteBoard(true);
@@ -29,7 +29,7 @@ const EditAndDeleteBoardModal: React.FC<Props> = ({ setShowEditBoard, setShowDel
                     }}
                 >
                     Delete Board
-                </p>
+                </a>
             </div>
             {/* {showDeleteBoard && (
                 <DeleteBoardModal
