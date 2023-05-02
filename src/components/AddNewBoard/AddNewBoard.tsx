@@ -47,10 +47,10 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
                 try {
                     setRequesting(true)
                     const filteredColumns= columns.filter((column)=>column.length>0)
-                    const requestBody={
-                        name,
-                        columns: filteredColumns
-                    }
+                    // const requestBody={
+                    //     name,
+                    //     columns: filteredColumns
+                    // }
                    // const postNewBoard= await axios.post(apiRoute.boards,requestBody)
                     const newalldata= await axios.get(apiRoute.alldata)
                     const response= newalldata.data

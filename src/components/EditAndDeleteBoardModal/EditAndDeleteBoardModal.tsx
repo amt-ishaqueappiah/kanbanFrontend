@@ -1,7 +1,5 @@
 import "./EditAndDeleteBoardModal.scss";
-import DeleteBoardModal from "../DeleteBoardModal/DeleteBoardModal";
-import { useState,useContext } from "react";
-import EditBoardModal from "../EditBoardModal/EditBoardModal";
+
 
 
 

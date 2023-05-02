@@ -77,7 +77,7 @@ const AddNewTaskModal: React.FC<Props> = ({ handleShowNewTask }) => {
                     subtasks:filteredSubtask
                 }
                 console.log(requestBody)
-                const postData= await axios.post(apiRoute.tasks,requestBody)
+                //const postData= await axios.post(apiRoute.tasks,requestBody)
                 const getallData= await axios.get(apiRoute.alldata)
                 setBoards(getallData.data.boards)
                 handleShowNewTask(false)

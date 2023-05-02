@@ -19,7 +19,7 @@ const DeleteBoardModal: React.FC<Props> = ({
     const handleDelete=()=>{
         const deleteBoardRequest= async ()=>{
             try {
-                const deleteBoard= await axios.delete(apiRoute.boards+`/${id}`)
+               // const deleteBoard= await axios.delete(apiRoute.boards+`/${id}`)
                 const allData= await axios.get(apiRoute.alldata)
                 setBoards(allData.data.boards)
                 navigate("/")
