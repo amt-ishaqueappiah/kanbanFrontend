@@ -1,0 +1,67 @@
+@import "./Home.scss";
+@import "./breakpoints";
+
+.main-add-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     align-items: center;
+}
+
+.main {
+    
+    grid-area: main;
+    display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    background-color: var(--background);
+    padding: 3rem;
+    gap: 2rem;
+    min-height: 100vh;
+    overflow: scroll;
+
+    .add-new-column-main-board{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        align-self: center;
+    }
+
+    .new-column{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color:  #828FA3;
+        font-size: 1.5rem;
+        background-color: var(--background);
+        margin-top: 5.7rem;
+        justify-content: center;
+        
+        
+
+     .newCol{
+        width: 20rem;
+        margin: 0 2rem;
+        text-align: center;
+        cursor: pointer;
+        background-color: var(--background);
+     }
+    }
+
+ 
+
+  
+     
+
+    @include fold {
+        padding: 0 2em;   
+    }
+
+
+
+    .add-new-column-btn {
+        margin-top: 1rem;
+    }
+}
