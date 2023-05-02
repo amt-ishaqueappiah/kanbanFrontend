@@ -1,0 +1,176 @@
+@import "./MainBoard.scss";
+@import "./breakpoints";
+@import "./Home.scss";
+@import "../App";
+
+
+.close{
+    @include md{
+        display: none;
+    }
+}
+
+.sidebar {
+    padding: 3rem 2rem;
+    color: var(--clr-neutral-400);
+   
+
+    @include md {
+        padding-left: 0;
+
+    }
+
+    ul {
+        list-style: none;
+        line-height: 4rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.5s ease-in;
+        cursor: pointer;
+        padding-left: 2rem;
+
+        svg {
+            color: #828fa3;
+        }
+
+        &:hover  {
+            background-color: whitesmoke;
+            border-radius: 0px 40px 40px 0px;
+            color: var(--clr-primary-400);
+
+            svg {
+                color: var(--clr-primary-400);
+            }
+        }
+        &.active{
+            background-color: var(--clr-hover);
+            border-radius: 0px 40px 40px 0px;
+            color: var(--clr-primary-400);
+
+            svg {
+                color: var(--clr-primary-400);
+            }
+        }
+    }
+
+    .allBoards {
+        padding-left: 2rem;
+        margin: 2rem 0;
+    }
+
+    .createBoard {
+        margin-top: 2rem;
+        cursor: pointer;
+        color: var(--clr-primary-400);
+        padding-left: 2rem;
+    }
+    @include sm {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 1.4rem;
+        width: 100vw;
+        margin-top: 6.8rem;
+        min-height: 100vh;
+        background-color: var(--secondary);
+    }
+
+    @include md {
+        grid-area: sidebar;
+        background-color: var(--secondary);
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        justify-content: space-between;
+    }
+
+    .sideBarModal {
+        @include md {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            
+
+          
+                .sidebarBottom,
+                .kanbanMainlogo {
+                    margin-left: 2rem;
+                }
+                .sidebarBottom{
+                    position: relative;
+                    .hideSidebar{
+                        cursor: pointer;
+                    }
+                    .sideBarIcon{
+                        cursor: pointer;
+
+                }
+            }
+        }
+
+        @include sm {
+            width: 26rem;
+            margin: 0 auto;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 1rem 2rem;
+
+            .sideBarIcon{
+               display: none;
+
+        }
+
+            @include fold {
+                width: 22rem;
+            }
+
+            .sidebarTop {
+                .kanbanMainlogo {
+                    display: none;
+                }
+            }
+            .sidebarBottom {
+                .hideSidebar {
+                    display: none;
+                }
+            }
+        }
+    }
+    .hideSidebar {
+        display: flex;
+        gap: 2rem;
+        padding:10px;
+
+        &:hover  {
+            background-color: whitesmoke;
+            border-radius: 0px 40px 40px 0px;
+            color: var(--clr-primary-400);
+
+            svg {
+                color: var(--clr-primary-400);
+            }
+        }
+
+    }
+    svg.kanbanMainlogo path{
+        fill:var(--white);
+    }
+}
+
+.side-bar-toggle {
+    @include sm {
+        display: none;
+    }
+
+    
+    
+  
+}
