@@ -1,8 +1,6 @@
 import { useState, useContext } from "react";
-import { isString } from "../utils/validation";
 import "./AddNewBoard.scss";
 import axios from 'axios';
-import { response } from "express";
 import apiRoute from "../../config/apiEndpointRoute";
 import { initialContext } from "../../context/dataContext";
 interface Props {
@@ -37,7 +35,7 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
     const removeFields = (index: number) => {
         setColumns((prevColumns)=>{
             prevColumns.splice(index, 1);
-            if(prevColumns.length==0)return [""]
+            if(prevColumns.length===0)return [""]
             return [...prevColumns]
         });
     };
@@ -53,7 +51,7 @@ const AddNewBoard: React.FC<Props> = ({ setAddNewBoard }) => {
                         name,
                         columns: filteredColumns
                     }
-                    const postNewBoard= await axios.post(apiRoute.boards,requestBody)
+                  
                     const newalldata= await axios.get(apiRoute.alldata)
                     const response= newalldata.data
                     setBoards(response.boards)

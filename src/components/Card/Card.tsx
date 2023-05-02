@@ -2,7 +2,7 @@ import "./Card.scss";
 import { IColumn, ITask } from "../utils/types";
 import {useState} from 'react';
 import EditTaskModal from "../EditTaskModal/EditTaskModal";
-import UpdateTaskModal from "../UpdateTaskModal/UpdateTaskModal";
+
 
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
 
 const Card: React.FC<Props> = ({task, column,index}) => {
     const [showEditTask, setShowEditTask]= useState(false)
-    const [updateTask, setUpdateTask]= useState(false)
     const [taskID,setTaskID]=useState('')
 
     const handleToggleShowModal=(e:any)=>{
@@ -29,7 +28,7 @@ const Card: React.FC<Props> = ({task, column,index}) => {
                 <p className="heading-md" >{task.title}</p>
                 <p className="body-md text-light">{task.subtasks?.reduce((prev,curr)=>curr.is_completed?prev+1:prev,0)} of {task.subtasks?.length} subtasks</p>
             </div>
-         { showEditTask==true &&  
+         { showEditTask===true &&  
          
          <EditTaskModal showEditTask={showEditTask} 
          setShowEditTask={setShowEditTask}
